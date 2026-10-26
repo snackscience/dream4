@@ -1,0 +1,6 @@
+{
+  "name": "꿈끼나비 - 나만의 진로·학과 매칭 내비게이터",
+  "description": "흥미, 성격, 좋아하는 활동을 바탕으로 최적의 대학 학과와 유망 직업을 추천하고 고교 선택과목 및 진로 로드맵을 제시하는 에듀테크 플랫폼",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
