@@ -1,5 +1,4 @@
-import React from 'react';
-import { Moon, Sun, Compass } from 'lucide-react';
+import { Moon, Sun, Compass, Download } from 'lucide-react';
 
 export type ActiveTab = 'home' | 'diagnostic' | 'majors' | 'careers' | 'history' | 'guide';
 
@@ -9,6 +8,7 @@ interface NavbarProps {
   isDark: boolean;
   onToggleTheme: () => void;
   onStartDiagnostic: () => void;
+  onOpenDownloadModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -17,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   isDark,
   onToggleTheme,
   onStartDiagnostic,
+  onOpenDownloadModal,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors no-print">
@@ -78,8 +79,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </nav>
 
-        {/* Zone 3: 1 primary action (+ subtle theme toggle) */}
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Zone 3: 1 primary action (+ subtle theme toggle + download) */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button
+            onClick={onOpenDownloadModal}
+            className="p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 text-xs font-semibold"
+            title="단일 배포용 index.html 파일 다운로드"
+            aria-label="index.html 다운로드"
+          >
+            <Download className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+            <span className="hidden sm:inline">index.html 다운로드</span>
+          </button>
+
           <button
             onClick={onToggleTheme}
             className="p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"

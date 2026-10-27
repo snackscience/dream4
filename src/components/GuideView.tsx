@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Compass, GraduationCap, CheckCircle2, Lightbulb, Users } from 'lucide-react';
+import { BookOpen, Compass, GraduationCap, CheckCircle2, Lightbulb, Users, Download } from 'lucide-react';
 
 export const GuideView: React.FC = () => {
   return (
@@ -159,6 +159,41 @@ export const GuideView: React.FC = () => {
               </span>
             </li>
           </ul>
+        </section>
+
+        {/* Section 4: Standalone index.html Download & GitHub Pages */}
+        <section className="p-6 bg-gradient-to-br from-indigo-50 to-sky-50 dark:from-slate-900 dark:to-indigo-950/60 border border-indigo-200 dark:border-indigo-900/60 rounded-3xl">
+          <div className="flex items-center gap-2.5 mb-3">
+            <Download className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100">
+              4. 단일 배포 파일(index.html) 다운로드 & 깃허브 배포
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            HTML, CSS, JavaScript 및 50여 개 학과·직업 데이터베이스가 모두 결합된 <strong>단일 무설치 index.html 파일</strong>을 제공합니다.
+            인터넷이 없는 환경에서도 더블 클릭만으로 100% 실행되며, GitHub Pages에 올리면 즉시 무료 웹사이트로 호스팅할 수 있습니다.
+          </p>
+
+          <div className="mb-5">
+            <a
+              href="/api/download/index.html"
+              download="index.html"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-indigo-500/20 transition-all active:scale-98"
+            >
+              <Download className="w-4 h-4" />
+              <span>단일 배포용 index.html 파일 다운로드 (~490KB)</span>
+            </a>
+          </div>
+
+          <div className="p-4 bg-white dark:bg-slate-900/80 rounded-2xl border border-indigo-100 dark:border-indigo-900/40 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+            <strong className="text-slate-900 dark:text-slate-100 font-semibold block mb-1">
+              🚀 GitHub Pages 1분 무료 배포 방법:
+            </strong>
+            <p>1. 깃허브(GitHub.com)에 로그인 후 새로운 저장소(New Repository) 생성</p>
+            <p>2. 위에서 다운로드한 <code>index.html</code> 파일을 저장소 최상단(root)에 업로드(Upload files) 후 Commit</p>
+            <p>3. 저장소의 <strong>Settings → Pages → Branch를 'main'으로 선택 후 Save</strong> 클릭</p>
+            <p>4. 1~2분 후 생성되는 URL(예: <code>https://아이디.github.io/저장소명/</code>)로 전 세계 누구나 접속 가능!</p>
+          </div>
         </section>
       </div>
     </div>

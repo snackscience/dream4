@@ -13,6 +13,7 @@ import { ExploreMajorsView } from './components/ExploreMajorsView';
 import { ExploreCareersView } from './components/ExploreCareersView';
 import { HistoryView } from './components/HistoryView';
 import { GuideView } from './components/GuideView';
+import { DownloadModal } from './components/DownloadModal';
 import { matchProfile } from './utils/matchingEngine';
 import {
   deleteDiagnosticResult,
@@ -28,6 +29,7 @@ export default function App() {
   const [history, setHistory] = useState<DiagnosticResult[]>([]);
   const [currentResult, setCurrentResult] = useState<DiagnosticResult | null>(null);
   const [pendingProfile, setPendingProfile] = useState<StudentProfile | null>(null);
+  const [showDownloadModal, setShowDownloadModal] = useState<boolean>(false);
 
   // Initialize theme and history on mount
   useEffect(() => {
@@ -105,6 +107,7 @@ export default function App() {
         isDark={isDark}
         onToggleTheme={handleToggleTheme}
         onStartDiagnostic={handleStartDiagnostic}
+        onOpenDownloadModal={() => setShowDownloadModal(true)}
       />
 
       {/* Main View Router */}
@@ -163,7 +166,14 @@ export default function App() {
             <span>나만의 진로·학과 매칭 내비게이터</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => setShowDownloadModal(true)}
+              className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline transition-colors"
+            >
+              📥 index.html 파일 다운로드
+            </button>
+            <span>·</span>
             <button
               onClick={() => setCurrentTab('guide')}
               className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors"
@@ -171,12 +181,15 @@ export default function App() {
               이용 안내 & 가이드
             </button>
             <span>·</span>
-            <span>교육부 2022/2015 개정 교육과정 기준</span>
-            <span>·</span>
-            <span>학생부 종합전형 연계</span>
+            <span>2022/2015 개정 교육과정 기준</span>
           </div>
         </div>
       </footer>
+
+      {/* Standalone index.html Download Modal */}
+      {showDownloadModal && (
+        <DownloadModal onClose={() => setShowDownloadModal(false)} />
+      )}
     </div>
   );
 }

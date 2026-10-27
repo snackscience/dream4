@@ -188,6 +188,27 @@ app.post('/api/ai-mentor', async (req: Request, res: Response) => {
   }
 });
 
+// Direct index.html download endpoint
+app.get('/api/download/index.html', (_req: Request, res: Response) => {
+  const standalonePublic = path.resolve(__dirname, 'public/index-standalone.html');
+  const standaloneDist = path.resolve(__dirname, 'dist/index-standalone.html');
+  const distIndex = path.resolve(__dirname, 'dist/index.html');
+  const rootIndex = path.resolve(__dirname, 'index.html');
+
+  let targetPath = rootIndex;
+  if (fs.existsSync(standaloneDist)) {
+    targetPath = standaloneDist;
+  } else if (fs.existsSync(standalonePublic)) {
+    targetPath = standalonePublic;
+  } else if (fs.existsSync(distIndex)) {
+    targetPath = distIndex;
+  }
+
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="index.html"');
+  return res.sendFile(targetPath);
+});
+
 async function startServer() {
   const isDev = process.env.NODE_ENV !== 'production';
 
